@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="../css/signup.css">
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <section>
+        <div class="create-account-container">
+
+            <div>Create Account</div>
+            <form id="signup-form">
+                <div>
+                    <label for="email">EMAIL</label>
+                    <input type="text" name="" id="email" placeholder="* EMAIL ADDRESS">
+                </div>
+
+                <div>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="" id="password" placeholder="* PASSWORD">
+                </div>
+
+                <div>
+                    <label for="first name">FIRST NAME</label>
+                    <input type="text" name="" id="firstName" placeholder="* FIRST NAME">
+                </div>
+
+                <div>
+                    <label for="last name">LAST NAME</label>
+                    <input type="text" name="" id="lastName" placeholder="* LAST NAME">
+                </div>
+
+                <div>
+                    <label for="phone">PHONE NO</label>
+                    <input type="number" name="" id="phoneNo" placeholder="* PHONE NUMBER">
+                </div>
+
+                <div>
+                    <button id="signup-btn">CREATE ACCOUNT</button>
+                </div>
+                <p style="color: red; font-size: 12px;" id="error-message"></p>
+
+                <div>
+                    <span>By signing up you accept our <a href="">terms and condtions & privacy policy</a></span>
+                     
+                </div>
+
+            </form>
+            <div>
+                <p>Already have an account?</p>
+                <button id="login-btn">Login</button>
+            </div>
+
+        </div>
+        <div></div>
+    </section>
+
+
+</body>
+
+</html>
+
+<script type="module" src="../js/signup.js"></script>
