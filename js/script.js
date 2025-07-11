@@ -9,27 +9,24 @@ const getElement =(selector)=>{
 }
 
 //ELEMENTS
-const ProductListEl = getElement("#product-list")
-const gridEl = getElement(".productList")
+
 const womenLinkEl = getElement("#womenLink")
 const menLinkEl = getElement("#menLink")
 const electLinkEl = getElement("#electLink")
 const jeweryLinkEl = getElement("#jeweryLink")
-const productCard = getElement(".productCard")
 const display = getElement("#display")
-// const signupLastNameEL = getElement("#lastName")
-// const signupPhoneEL = getElement("#phoneNo")
-// const passErrorMessage = getElement("#error-message")
 
 const baseURL = "https://fakestoreapi.com/products"
 
-// GET ALL PRODUCTS
+
+
 
 // LOAD WOMEN PRODUCTS
 
 const loadWomenProducts = async () => {
-    console.log("Loading...");
+    
     display.innerHTML = ""
+    spinner.classList.remove("d-none")
     try {
         const response = await fetch(`${baseURL}/category/women%27s%20clothing`)
         const data = await response.json()
@@ -38,14 +35,40 @@ const loadWomenProducts = async () => {
         card.classList.add("card")
         data.forEach((ele,index) => {
             card.innerHTML += `
-           <div class="productList">
-                 <div class="image-div">
-                    <img src="${ele.image}" >
-                 </div>
-                 <h2>${ele.title}</h2>
-                 <p>$${ele.price}</p>
-           </div>
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                  </div>
+                </div>
+           
             `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
+            display.appendChild(card)
+
+        });
+        
+        data.forEach((ele,index) => {
+            card.innerHTML += `
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                     
+                  </div>
+                </div>
+                 
+           
+            `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
             display.appendChild(card)
 
         });
@@ -56,37 +79,79 @@ const loadWomenProducts = async () => {
         
         
     }finally{
-        console.log("Done!");
+        spinner.classList.add("d-none")
         
     }
 }
-womenLinkEl.addEventListener("click",loadWomenProducts)
 
-loadWomenProducts()
+womenLinkEl.addEventListener('click', async (event)=>{
+    event.preventDefault();
+    await loadWomenProducts();
+
+    womenLinkEl.style.color = 'red';
+    menLinkEl.style.color = 'gray';
+    electLinkEl.style.color = 'gray';
+    jeweryLinkEl.style.color = 'gray';
+});
+// womenLinkEl.addEventListener("click",loadWomenProducts)
+
+
 
 
 // LOAD MEN PRODUCTS
 
+
+
+
 const loadMenProducts = async () => {
-    console.log("Loading...");
     display.innerHTML = ""
+
+    spinner.classList.remove("d-none")
+
     try {
         const response = await fetch(`${baseURL}/category/men%27s%20clothing`)
         const data = await response.json()
         console.log(data);
         const card= document.createElement("div")
-        card.classList.toggle("card")
+        card.classList.add("card")
         data.forEach((ele,index) => {
             card.innerHTML += `
-           <div class="productList">
-                 <div class="image-div">
-                    <img src="${ele.image}" >
-                 </div>
-                 <h2>${ele.title}</h2>
-                 <p>$${ele.price}</p>
-           </div>
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                  </div>
+                </div>
+           
             `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
             display.appendChild(card)
+
+        });
+        
+        data.forEach((ele,index) => {
+            card.innerHTML += `
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                     
+                  </div>
+                </div>
+                 
+           
+            `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
+            display.appendChild(card)
+
         });
         
     } catch (error) {
@@ -95,13 +160,21 @@ const loadMenProducts = async () => {
         
         
     }finally{
-        console.log("Done!");
+        spinner.classList.add("d-none")
         
     }
 }
-menLinkEl.addEventListener("click",loadMenProducts)
 
-loadMenProducts()
+menLinkEl.addEventListener('click', async (event)=>{
+    event.preventDefault();
+    await loadMenProducts();
+
+    womenLinkEl.style.color = 'gray';
+    menLinkEl.style.color = 'red';
+    electLinkEl.style.color = 'gray';
+    jeweryLinkEl.style.color = 'gray';
+});
+
 
 
 
@@ -109,8 +182,11 @@ loadMenProducts()
 // LOAD ELECTRONICS PRODUCTS
 
 const loadElectProducts = async () => {
-    console.log("Loading...");
+    
     display.innerHTML = ""
+
+    spinner.classList.remove("d-none")
+
     try {
         const response = await fetch(`${baseURL}/category/electronics`)
         const data = await response.json()
@@ -119,14 +195,40 @@ const loadElectProducts = async () => {
         card.classList.add("card")
         data.forEach((ele,index) => {
             card.innerHTML += `
-           <div class="productList">
-                 <div class="image-div">
-                    <img src="${ele.image}" >
-                 </div>
-                 <h2>${ele.title}</h2>
-                 <p>$${ele.price}</p>
-           </div>
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                  </div>
+                </div>
+           
             `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
+            display.appendChild(card)
+
+        });
+        
+        data.forEach((ele,index) => {
+            card.innerHTML += `
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                     
+                  </div>
+                </div>
+                 
+           
+            `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
             display.appendChild(card)
 
         });
@@ -137,20 +239,33 @@ const loadElectProducts = async () => {
         
         
     }finally{
-        console.log("Done!");
+        spinner.classList.add("d-none")
         
     }
 }
-electLinkEl.addEventListener("click",loadElectProducts)
 
-loadElectProducts()
+electLinkEl.addEventListener('click', async (event)=>{
+    event.preventDefault();
+    await loadElectProducts();
+
+    womenLinkEl.style.color = 'gray';
+    menLinkEl.style.color = 'gray';
+    electLinkEl.style.color = 'red';
+    jeweryLinkEl.style.color = 'gray';
+});
+
 
 
 //LOAD JEWERY PRODUCTS
 
+
+
 const loadJeweryProducts = async () => {
-    console.log("Loading...");
+    
     display.innerHTML = ""
+
+    spinner.classList.remove("d-none")
+    
     try {
         const response = await fetch(`${baseURL}/category/jewelery`)
         const data = await response.json()
@@ -159,14 +274,40 @@ const loadJeweryProducts = async () => {
         card.classList.add("card")
         data.forEach((ele,index) => {
             card.innerHTML += `
-           <div class="productList">
-                 <div class="image-div">
-                    <img src="${ele.image}" >
-                 </div>
-                 <h2>${ele.title}</h2>
-                 <p>$${ele.price}</p>
-           </div>
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                  </div>
+                </div>
+           
             `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
+            display.appendChild(card)
+
+        });
+        
+        data.forEach((ele,index) => {
+            card.innerHTML += `
+                <div class="pdt">
+                    <img src="${ele.image} " class="card-img-top"" >
+                  <div class="card-body">
+                     <h2>${ele.title}</h2>
+                     <p>$${ele.price} <i class="fa-regular fa-heart"></i></p>
+                     <button class="card-btn">Preview</button>
+                     
+                     
+                  </div>
+                </div>
+                 
+           
+            `
+             const quickViewButton = card.querySelector('.card-btn');
+            quickViewButton.addEventListener('click', (event) => view(event));
             display.appendChild(card)
 
         });
@@ -177,10 +318,19 @@ const loadJeweryProducts = async () => {
         
         
     }finally{
-        console.log("Done!");
+        spinner.classList.add("d-none")
         
     }
 }
-jeweryLinkEl.addEventListener("click",loadJeweryProducts)
 
-loadJeweryProducts()
+jeweryLinkEl.addEventListener('click', async (event)=>{
+    event.preventDefault();
+    await loadJeweryProducts();
+
+    womenLinkEl.style.color = 'gray';
+    menLinkEl.style.color = 'gray';
+    electLinkEl.style.color = 'gray';
+    jeweryLinkEl.style.color = 'red';
+});
+
+

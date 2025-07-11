@@ -1,7 +1,13 @@
 import { getAuth, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+
+import {getFirestore, collection,doc,getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
 import { app } from "./firebaseConfig.js";
 
 const auth = getAuth(app)
+const DB = getFirestore(app)
+const userColRef = collection(DB, "users")
+let currentUser;
 
 // Utils
 const getElement =(selector)=>{
@@ -19,6 +25,19 @@ const signInPasswordEL = getElement("#password")
 const signInFormEL = getElement("#signin-form")
 const errorMessageEl = getElement("#error-message")
 
+
+onAuthStateChanged(auth, async (user) => {
+    if (user) {
+        const docRef = doc(userColRef, user.uid)
+        const userCredential =await getDoc(docRef)
+        currentUser = userCredential.data()
+        
+
+    } else {
+        window.location.href= "../index.html"
+    }
+})
+
 const handleSignin = async()=>{
     console.log("signin...");
     
@@ -30,7 +49,7 @@ const handleSignin = async()=>{
         
         if (user) {
             alert("Welcome")
-            window.location.href = "../html/dashboard.html"
+            window.location.href = "./dashboard.html"
         }
     } catch (error) {
         console.log(error);

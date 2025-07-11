@@ -53,11 +53,11 @@
                         </svg></a>
                     <div id="nav-box"></div>
                     <ul class="dropdown">
-                        <li><a href=""><img src="./multimedia/person_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <li><a href="./html/signup.html"><img src="./multimedia/person_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                                 Register</a></li>
-                        <li><a href=""><img src="./multimedia/login_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+                        <li><a href="./html/signin.html"><img src="./multimedia/login_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg" alt="">
                                 Sign In</a></li>
-                        <li><a href=""><img src="./multimedia/shopping_bag_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
+                        <li><a href="./html/cart.html"><img src="./multimedia/shopping_bag_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
                                     alt=""> My Orders</a></li>
                         <li><a href=""><img
                                     src="./multimedia/manage_accounts_26dp_000000_FILL0_wght400_GRAD0_opsz24.svg"
@@ -72,7 +72,7 @@
                 </li>
 
                 <li class="cart-wrap">
-                    <a href=""><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px"
+                    <a href="./html/cart.html"><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" role="img" width="24px"
                             height="24px" fill="none">
                             <path stroke="currentColor" stroke-width="1.5"
                                 d="M8.25 8.25V6a2.25 2.25 0 012.25-2.25h3a2.25 2.25 0 110 4.5H3.75v8.25a3.75 3.75 0 003.75 3.75h9a3.75 3.75 0 003.75-3.75V8.25H17.5">
@@ -113,16 +113,74 @@
                     <li><a href="#" id="electLink">Electronies</a></li>
                     <li><a href="#" id="jeweryLink">Jewelry</a></li>
                 </ul>
-                <div class="productCard"></div>
-                <div id="display"></div>
+               
             </div>
-            <div id="product-list" class="productList">
 
+            <div id="display"></div>
+            
+
+
+
+
+
+
+
+            <div class="setALarm">
+                <div class="con">
+                    <span class="cancel">&times;</span>
+                    <div class="flex">
+                        <div class="img-div">
+                            <img src="" id="displayedImage" alt="">
+                        </div>
+                        <div class="note-side">
+                            <h1 class="title" id="displayTitle"></h1>
+                            <h2 class="price" id="displayPrice"></h2>
+                            <p class="description" id="displayDescription">Explore an exclusive collection of
+                                high-quality
+                                products crafted to enhance your lifestyle, offering trendy designs, superior comfort,
+                                and
+                                exceptional value, satisfying your diverse needs with style and reliability, tailored
+                                just
+                                for you.</p>
+                            <h1 class="size">SIZE</h1>
+                            <select name="size" id="sizeSelect">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                <option value="XXL">XXL</option>
+                            </select>
+                            <h1 class="color">COLOR</h1>
+                            <select name="color" id="colorSelect">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                                <option value="green">Green</option>
+                                <option value="yellow">Yellow</option>
+                                <option value="black">Black</option>
+                                <option value="white">White</option>
+                            </select>
+                            <div>
+                                <input type="number" name="quantity" id="quantityInput" value="1" min="1">
+                                <button id="CartBTN" type="button">ADD TO CART
+                                    <div id="spinnerss" class="spinner-border spinner-border-sm d-none" role="status"
+                                        style="color: white; position: absolute; right: 10px; top: -5px;">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>1</div>
+
+            <div class="text-center d-none mb-5" id="spinner">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
         </section>
 
-        <section>
+        <!-- <section>
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
@@ -131,18 +189,19 @@
                         aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
                         aria-label="Slide 3"></button>
-                      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
-                        aria-label="Slide 4"></button>  
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
-                        aria-label="Slide 5"></button> 
+                        aria-label="Slide 5"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"
-                        aria-label="Slide 6"></button>  
+                        aria-label="Slide 6"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6"
-                        aria-label="Slide 7"></button>         
+                        aria-label="Slide 7"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img src="./multimedia/0610_hp_c02a_img.avif" class="d-block w-100" alt="...">
+                        <img src="./multimedia/0617_hp_c03_img.avif" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>First slide label</h5>
                             <p>Some representative placeholder content for the first slide.</p>
@@ -162,28 +221,28 @@
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
-                     <div class="carousel-item">
+                    <div class="carousel-item">
                         <img src="./multimedia/0624_hp_c06b_img.avif" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>fourth slide label</h5>
                             <p>Some representative placeholder content for the fourth slide.</p>
                         </div>
                     </div>
-                     <div class="carousel-item">
+                    <div class="carousel-item">
                         <img src="./multimedia/0624_hp_c06b_img.avif" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>fifth slide label</h5>
                             <p>Some representative placeholder content for the fifth slide.</p>
                         </div>
                     </div>
-                     <div class="carousel-item">
+                    <div class="carousel-item">
                         <img src="./multimedia/0624_hp_c06b_img.avif" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Six slide label</h5>
                             <p>Some representative placeholder content for the six slide.</p>
                         </div>
                     </div>
-                     <div class="carousel-item">
+                    <div class="carousel-item">
                         <img src="./multimedia/0624_hp_c06b_img.avif" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Seven slide label</h5>
@@ -202,8 +261,8 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-            
-        </section>
+
+        </section> -->
 
         <section>
             <div>1</div>

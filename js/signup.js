@@ -1,8 +1,12 @@
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 import { app } from "./firebaseConfig.js";
 
+import { getFirestore,collection } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+
 
 const auth = getAuth(app)
+const DB = getFirestore(app)
+const userColRef = collection(DB,"users")
 
 
 //Utils
@@ -17,16 +21,30 @@ const getElement =(selector)=>{
 
 //ELEMENTS
 const signupFormEl = getElement("#signup-form")
+const signupBtnEl = getElement("#signup-btn")
 const signupEmailEl = getElement("#email")
 const signupPasswordEl = getElement("#password")
 const signupFirstNameEl = getElement("#firstName")
 const signupLastNameEL = getElement("#lastName")
 const signupPhoneEL = getElement("#phoneNo")
 const passErrorMessage = getElement("#error-message")
+// const loginbtn = getElement("#login-btn")
 
 // Signup
 
 const handleSignup = async ()=>{
+    signupBtnEl.textContent= "Authenticating..."
+    signupBtnEl.disabled= true
+    console.log(signupEmailEl.value);
+    console.log(signupPasswordEl.value);
+    console.log(signupFirstNameEl.value);
+
+    if (!signupEmailEl.value || !signupPasswordEl.value || !signupFirstNameEl) {
+        passErrorMessage.textContent = "All fields required"
+    } else {
+        passErrorMessage.textContent = ""
+    }
+    
     console.log("signing...");
 
     
@@ -37,12 +55,25 @@ const handleSignup = async ()=>{
         console.log(user);
         if (user) {
             alert("Signup Successful")
-            window.location.href = "../html/signin.html"
+            window.location.href = "./signin.html"
         }
         if (!user) {
            alert("User not created") 
            return
         }
+        
+        console.log(user.uid);
+        // COLLECT USER ID AND ADD TO THE DATABASE
+        const newUser ={
+            id: user.id,
+            username: signupFirstNameEl.value,
+            email: signupPasswordEl.value
+        }
+
+        const docRef = doc(userColRef, user.uid)
+        const userSnapshot = setDoc(docRef, user)
+        console.log(userSnapshot);
+        
         
     } catch (error) {
         console.log(error);
@@ -55,7 +86,9 @@ const handleSignup = async ()=>{
         
         
     }finally{
-        console.log("Done!!!");
+          signupBtnEl.textContent = "Sign up"
+          signupBtnEl.disabled = false
+          console.log("Done!!!");
         
     }
 }
@@ -64,3 +97,5 @@ signupFormEl.addEventListener("submit",(e)=>{
     e.preventDefault()
     handleSignup()
 })
+
+
